@@ -1,0 +1,41 @@
+import { Employee } from './types';
+
+// Pre-loaded employee list. Salary and working days can be edited in the Employees tab.
+// ID 24 is intentionally missing (not assigned).
+export const DEFAULT_EMPLOYEES: Employee[] = [
+  { id: 1, name: 'Htet Yadanar Lin', department: 'Reception', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 2, name: 'Myat Bhone Htut', department: 'Reception', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 3, name: 'Phyu Hnin Wai', department: 'Finance', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 4, name: 'Aye Su Mon', department: 'Reception', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 5, name: 'May Thu Khaing', department: 'Reception', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 6, name: 'Hnin Yati Oo', department: 'Reception', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 7, name: 'Thiha', department: 'Media', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 8, name: 'Khant Win Ko', department: 'Media', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 9, name: 'Zayar Htoo Htoo', department: 'Media', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 10, name: 'U Soe Moe', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 11, name: 'U Si Thu Soe', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 12, name: 'Daw Wint Wint Khaing', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 13, name: 'Daw Aye Myat Thu', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 14, name: 'Daw Maw Maw Thant', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 15, name: 'Daw Nu Nu Hlaing', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 16, name: 'Daw Pyae Pyae Soe', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 17, name: 'Daw Wai Wai Aung', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 18, name: 'Daw Mar Lar', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 19, name: 'Daw Poe July', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 20, name: 'Daw Aye Nadi Moe', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 21, name: 'Daw Aye Kyel Sin Linn', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 22, name: 'U Naing Ko Ko Lin', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 23, name: 'U Min Khant Aung', department: 'Academic', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  // ID 24 not assigned
+  { id: 25, name: 'Aung Khaing Su Pyae', department: 'Finance', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 26, name: 'Daw Wut Yi', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 27, name: 'U Aung Lwin', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 28, name: 'U Aung Naing Oo', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 29, name: 'U Myat Htut', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 30, name: 'Nay Blue Hmue', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 31, name: 'Daw Kyi Pyar', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 32, name: 'U Maung Naing', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 33, name: 'Thin Zar Lwin', department: 'Finance', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 34, name: 'U Ye Yint Oo', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+  { id: 35, name: 'U Min Khant Ko Ko', department: 'Operation', location: 'Yangon', monthlySalary: 0, workingDays: 26 },
+];
