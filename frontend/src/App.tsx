@@ -61,11 +61,11 @@ export default function App() {
         <Toolbar>
           <FingerprintIcon sx={{ mr: 1, color: 'primary.main' }} />
           <Typography variant="h6" sx={{ fontWeight: 600, color: 'text.primary' }}>
-            Attendance Salary Deduction
+            Attendance System
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary', ml: 2 }}>
+          {/* <Typography variant="body2" sx={{ color: 'text.secondary', ml: 2 }}>
             Myanmar Kyat (Ks)
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
 

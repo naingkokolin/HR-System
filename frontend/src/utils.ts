@@ -83,14 +83,18 @@ export function getLateLevel(
 export function getDeduction(
   level: LateLevel,
   rules: DeductionRule[],
-  employee: Employee
+  employee: Employee,
+  totalCalendarDays?: number  // used for Serious Delay: salary / calendarDays / 2
 ): number {
   switch (level) {
     case 'Level 1': return rules[0].amount;
     case 'Level 2': return rules[1].amount;
     case 'Level 3': return rules[2].amount;
     case 'Level 4': return rules[3].amount;
-    case 'Serious Delay': return employee.monthlySalary / (employee.workingDays * 2);
+    case 'Serious Delay': {
+      const divisor = totalCalendarDays ?? employee.workingDays;
+      return employee.monthlySalary / divisor / 2;
+    }
     default: return 0;
   }
 }
@@ -139,20 +143,32 @@ export function generateReport(
   log: LogEntry[],
   settings: AppSettings,
   startDate?: string,
-  endDate?: string
+  endDate?: string,
+  actualSalaries?: Record<number, number>  // empId -> admin-entered actual salary
 ): EmployeeReport[] {
   const exemptions = loadExemptions();
+
+  // Calculate total calendar days in the period for serious delay half-day calc
+  let totalCalendarDays: number | undefined;
+  if (startDate && endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    totalCalendarDays = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+  }
+
   const byEmp = new Map<number, EmployeeReport>();
 
   for (const emp of employees) {
+    const salary = actualSalaries?.[emp.id] ?? emp.monthlySalary;
+    const empWithSalary = { ...emp, monthlySalary: salary };
     byEmp.set(emp.id, {
-      employee: emp,
+      employee: empWithSalary,
       daysPresent: 0,
       lateDays: 0,
       warningCount: 0,
       seriousDelayCount: 0,
       totalDeduction: 0,
-      netSalary: emp.monthlySalary,
+      netSalary: salary,
       actionRequired: false,
       days: [],
     });
@@ -168,8 +184,7 @@ export function generateReport(
 
     const exempted = exemptions.has(exemptionKey(entry.id, entry.date));
     const level = getLateLevel(entry.lateMinutes, settings.rules, settings.seriousDelayMinutes);
-    // If admin exempted this day, deduction = 0 but level label still shown
-    const deduction = exempted ? 0 : getDeduction(level, settings.rules, rec.employee);
+    const deduction = exempted ? 0 : getDeduction(level, settings.rules, rec.employee, totalCalendarDays);
 
     const dayResult: DayResult = {
       date: entry.date,
@@ -213,8 +228,8 @@ export function exportToCSV(reports: EmployeeReport[], periodLabel = ''): void {
   for (const r of reports) {
     const status = r.actionRequired ? 'Action Required'
       : r.warningCount > 0 ? 'Warning'
-        : r.seriousDelayCount > 0 ? 'Serious Delay'
-          : 'Good';
+      : r.seriousDelayCount > 0 ? 'Serious Delay'
+      : 'Good';
     rows.push([
       r.employee.id, `"${r.employee.name}"`, `"${r.employee.department}"`, r.employee.location,
       r.daysPresent, r.lateDays, r.warningCount, r.seriousDelayCount,
